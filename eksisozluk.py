@@ -5,27 +5,25 @@ import time
 browser = webdriver.Chrome()
 
 url = "https://eksisozluk.com/corona-virusu-sayesinde-fark-edilen-gercekler--6435737?p="
+# browser.get(url)
+# print(len(browser.find_elements_by_tag_name('a')))
 
 pageCount = 1
 entries = []
 entryCount = 1
-while pageCount <=3:
+while pageCount <= 3:
     newUrl = url + str(pageCount)
     browser.get(newUrl)
-    elements =browser.find_elements_by_css_selector(".content")
+    elements = browser.find_elements_by_css_selector(".content")
     for element in elements:
         entries.append(element.text)
     time.sleep(3)
-    pageCount +=1
+    pageCount += 1
 
-with open ("entries.txt" , "w" ,encoding = "UTF-8") as file: 
+with open("entries.txt", "w", encoding="UTF-8") as file:
     for entry in entries:
-        file.write(str(entryCount) + ".\n" + entry +"\n")
+        file.write(str(entryCount) + ".\n" + entry + "\n")
         file.write("******************************************\n")
-        entryCount +=1
-   
+        entryCount += 1
+
 browser.close()
-
-
-
-     
